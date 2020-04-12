@@ -1,0 +1,42 @@
+---
+title: "R Markdown and Leaflet"
+author: "Joe Karbowniczek"
+date: "4/12/2020"
+output: html_document
+---
+---
+title: "My First Leaflet Map"
+author: "Christian Frei"
+date: "6 July 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+The source code is available at [GitHub](https://github.com/JoeKarbo/Developing-Data-Products_Week_2). [Just click here!](https://github.com/JoeKarbo/Developing-Data-Products_Week_2)
+
+## My First Leaflet Map
+Create a leaflet map object.
+```{r cars}
+library(leaflet)
+map <- leaflet() %>% addTiles()
+
+```
+
+Create a marker with a picture of Baltimore City Hall and a link to its homepage.
+```{r}
+BaltimoreCityHallIcon <- makeIcon(
+   iconUrl = "https://upload.wikimedia.org/wikipedia/commons/6/68/1city_hall_baltimore.jpg",
+   iconWidth = 30*408/255, iconHeight = 30,
+   iconAnchorX = 30*408/255/2, iconAnchorY = 30/2
+)
+```
+
+Add the marker to the map and display the map.
+```{r}
+BaltimoreCityHallPopup <- c("<a href= 'https://law.baltimorecity.gov/' >Baltimore City Hall<br><img src='https://upload.wikimedia.org/wikipedia/commons/6/68/1city_hall_baltimore.jpg' width='210' height='132'  alt='Baltimore: Birthplace of the Star Spangled Banner' title='Baltimore: Birthplace of the Star Spangled Banner'></a>")
+map %>%
+   addTiles() %>%
+   addMarkers(lat=39.2908, lng=-76.6106, popup = BaltimoreCityHallPopup)
+```
